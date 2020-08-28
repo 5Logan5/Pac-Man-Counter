@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,6 +22,8 @@
                 var x = event.keyCode;
 
                 if (x == 13){ //Enter
+                    var CheckIfLive = localStorage.getItem("GameLive");
+                    if (CheckIfLive == 1) {
                     var CheckLivesLeft = localStorage.getItem("LivesLeft")
                     if (CheckLivesLeft == null){
                         localStorage.setItem("LivesLeft", 3)
@@ -41,11 +44,17 @@
                         localStorage.setItem("LivesLeft", 1)
                         document.getElementById('LivesLeft').innerHTML = ("1 life left");
                     }
+                    }else{
+                        alert("No game is started to be able to add lives! Press the space bar to start a game");
+                    }
+                    
                 }
 
                 if (x == 76) { //L
                     var CheckForFirstDeath = localStorage.getItem("LivesLeft")
-
+                    var CheckIfLive = localStorage.getItem("GameLive");
+                    
+                    if (CheckIfLive == 1){
                     if (CheckForFirstDeath == null) {
                         localStorage.setItem("LivesLeft", 2)
                         document.getElementById('LivesLeft').innerHTML = ("2 lives left");
@@ -68,14 +77,26 @@
 
                     if (CheckForFirstDeath == 0) {
                         var GetLevel = localStorage.getItem("Level")
-                        document.getElementById('TimeStarted').innerHTML = ("Oh no you lost all your lives! You survived until level " + GetLevel + ".");
-                        localStorage.setItem("HighestLevelReached", GetLevel)
+                        document.getElementById('TimeStarted').innerHTML = ("Oh no you lost all your lives! You survived until level " + GetLevel + ".");                        
                         localStorage.removeItem("LivesLeft")
                         localStorage.removeItem("Level")
+                        localStorage.removeItem("GameLive")
                         document.getElementById('Level').innerHTML = ("");
                         document.getElementById('AlertSection').innerHTML = ("");
                         document.getElementById('HighestLevelReached').innerHTML = ("");
                         document.getElementById('LivesLeft').innerHTML = ("");
+                        var HighestLevel = localStorage.getItem("HighestLevelReached");
+                        
+                        if (HighestLevel == null) {
+                            var HighestLevel = 0
+                            localStorage.setItem("HighestLevelReached", 0);
+                        }
+                        
+                        if (HighestLevel < GetLevel) {
+                            localStorage.setItem("HighestLevelReached", GetLevel)
+                        }
+                                                                
+                    }
                     }
                 }
 
@@ -156,6 +177,7 @@
 
                     if (Level == 1) {
                         document.getElementById('AlertSection').innerHTML = ("Game has started!");
+                        localStorage.setItem("GameLive", 1);
                     }
 
                     if (SetNewLevel == 2) {
