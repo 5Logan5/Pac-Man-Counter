@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pac-Man Counter</title>
+    <link rel="shortcut icon" href="pacman.png" type="images.png">
+</head>
+
+<body style="background-color:black;">
+    <font color="White" </font>
+        <input type="text" size="50" onkeydown="keyCode(event)">
+        <p id="TimeStarted"></p>
+        <p id="Level"></p>
+        <p id="AlertSection"></p>
+        <p id="HighestLevelReached"></p>
+        <p id="LivesLeft"></p>
+        <script>
+            function keyCode(event) {
+                var x = event.keyCode;
+
+                if (x == 13){ //Enter
+                    var CheckLivesLeft = localStorage.getItem("LivesLeft")
+                    if (CheckLivesLeft == null){
+                        localStorage.setItem("LivesLeft", 3)
+                        document.getElementById('LivesLeft').innerHTML = ("3 lives left");
+                    }
+                    
+                    if (CheckLivesLeft == 2){
+                        localStorage.setItem("LivesLeft", 3)
+                        document.getElementById('LivesLeft').innerHTML = ("3 lives left");
+                    }
+
+                    if (CheckLivesLeft == 1){
+                        localStorage.setItem("LivesLeft", 2)
+                        document.getElementById('LivesLeft').innerHTML = ("2 lives left");
+                    }
+
+                    if (CheckLivesLeft == 0){
+                        localStorage.setItem("LivesLeft", 1)
+                        document.getElementById('LivesLeft').innerHTML = ("1 life left");
+                    }
+                }
+
+                if (x == 76) { //L
+                    var CheckForFirstDeath = localStorage.getItem("LivesLeft")
+
+                    if (CheckForFirstDeath == null) {
+                        localStorage.setItem("LivesLeft", 2)
+                        document.getElementById('LivesLeft').innerHTML = ("2 lives left");
+                    }
+
+                    if (CheckForFirstDeath == 3) {
+                        localStorage.setItem("LivesLeft", 2)
+                        document.getElementById('LivesLeft').innerHTML = ("2 lives left");
+                    }
+
+                    if (CheckForFirstDeath == 2) {
+                        localStorage.setItem("LivesLeft", 1)
+                        document.getElementById('LivesLeft').innerHTML = ("1 life left");
+                    }
+
+                    if (CheckForFirstDeath == 1) {
+                        localStorage.setItem("LivesLeft", 0)
+                        document.getElementById('LivesLeft').innerHTML = ("0 lives left");
+                    }
+
+                    if (CheckForFirstDeath == 0) {
+                        var GetLevel = localStorage.getItem("Level")
+                        document.getElementById('TimeStarted').innerHTML = ("Oh no you lost all your lives! You survived until level " + GetLevel + ".");
+                        localStorage.setItem("HighestLevelReached", GetLevel)
+                        localStorage.removeItem("LivesLeft")
+                        localStorage.removeItem("Level")
+                        document.getElementById('Level').innerHTML = ("");
+                        document.getElementById('AlertSection').innerHTML = ("");
+                        document.getElementById('HighestLevelReached').innerHTML = ("");
+                        document.getElementById('LivesLeft').innerHTML = ("");
+                    }
+                }
+
+                if (x == 32) { // Space Bar
+
+                    if (Level == undefined) {
+                        var CheckForFirstTime = localStorage.getItem("Level")
+                        if (CheckForFirstTime == null) {
+                            document.getElementById('LivesLeft').innerHTML = ("2 lives left");
+                            var Level = 1
+                            localStorage.setItem("Level", 1)
+                            var d = new Date();
+                            var Hour = d.getHours();
+                            var Minutes = d.getMinutes();
+
+                            if (Hour > 12){
+                                var NewHourFormat = parseFloat(Hour) - parseFloat(12)
+                                var Hour = NewHourFormat
+                            }
+
+                            if (Minutes == 0){
+                                var Minutes = 00
+                            }
+
+                            if (Minutes == 1){
+                                var Minutes = 01
+                            }
+
+                            if (Minutes == 2){
+                                var Minutes = 02
+                            }
+
+                            if (Minutes == 3){
+                                var Minutes = 03
+                            }
+
+                            if (Minutes == 4){
+                                var Minutes = 04
+                            }
+
+                            if (Minutes == 5){
+                                var Minutes = 05
+                            }
+
+                            if (Minutes == 6){
+                                var Minutes = 06
+                            }
+
+                            if (Minutes == 7){
+                                var Minutes = 07
+                            }
+
+                            if (Minutes == 8){
+                                var Minutes = 08
+                            }
+
+                            if (Minutes == 9){
+                                var Minutes = 09
+                            }
+
+                            document.getElementById('TimeStarted').innerHTML = ("Time started: " + Hour + ":" + Minutes + ".");
+                            var HighestLevelReached = localStorage.getItem("HighestLevelReached")
+                            if (HighestLevelReached == null) {
+                                var HighestLevelReached = 0
+                            }
+                            document.getElementById('HighestLevelReached').innerHTML = ("Highest level reached is: " + HighestLevelReached + "");
+                        } else {
+                            var SetNewLevel = parseFloat(CheckForFirstTime) + parseFloat(1)
+                            localStorage.setItem("Level", SetNewLevel)
+                            document.getElementById('Level').innerHTML = ("Level: " + SetNewLevel + "");
+                        }
+
+                    }
+
+                    if (Level == 1) {
+                        document.getElementById('AlertSection').innerHTML = ("Game has started!");
+                    }
+
+                    if (SetNewLevel == 2) {
+                        document.getElementById('AlertSection').innerHTML = ("STRAWBERRY PATTERN");
+                    }
+
+                    if (SetNewLevel == 3) {
+                        document.getElementById('AlertSection').innerHTML = ("Intermission before round. Continue with strawberry pattern");
+                    }
+
+                    if (SetNewLevel == 4) {
+                        document.getElementById('AlertSection').innerHTML = ("Continue with strawberry pattern");
+                    }
+
+                    if (SetNewLevel == 5) {
+                        document.getElementById('AlertSection').innerHTML = ("APPLE PATTERN");
+                    }
+
+                    if (SetNewLevel == 6) {
+                        document.getElementById('AlertSection').innerHTML = ("Intermission before round. Continue with apple pattern");
+                    }
+
+                    if (SetNewLevel == 7) {
+                        document.getElementById('AlertSection').innerHTML = ("Continue with apple pattern");
+                    }
+
+                    if (SetNewLevel == 8) {
+                        document.getElementById('AlertSection').innerHTML = ("Continue with apple pattern");
+                    }
+
+                    if (SetNewLevel == 9) {
+                        document.getElementById('AlertSection').innerHTML = ("Continue with apple pattern");
+                    }
+
+                    if (SetNewLevel == 10) {
+                        document.getElementById('AlertSection').innerHTML = ("Intermission before round. Continue with apple pattern");
+                    }
+
+                    if (SetNewLevel == 11) {
+                        document.getElementById('AlertSection').innerHTML = ("Continue with apple pattern");
+                    }
+
+                    if (SetNewLevel == 12) {
+                        document.getElementById('AlertSection').innerHTML = ("Continue with apple pattern");
+                    }
+
+                    if (SetNewLevel == 13) {
+                        document.getElementById('AlertSection').innerHTML = ("Continue with apple pattern");
+                    }
+
+                    if (SetNewLevel == 14) {
+                        document.getElementById('AlertSection').innerHTML = ("Intermission before round. Continue with apple pattern");
+                    }
+
+                    if (SetNewLevel == 15) {
+                        document.getElementById('AlertSection').innerHTML = ("Continue with apple pattern");
+                    }
+
+                    if (SetNewLevel == 16) {
+                        document.getElementById('AlertSection').innerHTML = ("Continue with apple pattern");
+                    }
+
+                    if (SetNewLevel == 17) {
+                        document.getElementById('AlertSection').innerHTML = ("FIFTH KEY PATTERN");
+                    }
+
+                    if (SetNewLevel == 18) {
+                        document.getElementById('AlertSection').innerHTML = ("Intermission before round. Continue with fifth key pattern");
+                    }
+
+                    if (SetNewLevel == 19) {
+                        document.getElementById('AlertSection').innerHTML = ("Continue with fifth key pattern");
+                    }
+
+                    if (SetNewLevel == 21) {
+                        document.getElementById('AlertSection').innerHTML = ("TURN RIGHT. NINTH KEY PATTERN. STAY FOCUSED.");
+                    }
+
+                    if (SetNewLevel == 250) {
+                        document.getElementById('AlertSection').innerHTML = ("Get camera ready for level 256!!!");
+                    }
+
+                    if (SetNewLevel == 256) {
+                        document.getElementById('AlertSection').innerHTML = ("YAY YOU GOT TO THE PAC-MAN KILL SCREEN!!!");
+                    }
+
+                }
+            }
+        </script>
+</body>
+
+</html>
