@@ -90,9 +90,10 @@
                             var HighestLevel = 0
                             localStorage.setItem("HighestLevelReached", 0);
                         }
-                        
-                        if (GetLevel > HighestLevel) {
-                            localStorage.setItem("HighestLevelReached", GetLevel)
+                        var LevelFinishedOn = localStorage.getItem("Level")
+                        var HighestLevelReached = localStorage.getItem("HighestLevelReached")
+                        if (LevelFinishedOn > HighestLevel) {
+                            localStorage.setItem("HighestLevelReached", LevelFinishedOn)
                         }
                                                                 
                     }
@@ -104,7 +105,7 @@
                 if (x == 32) { // Space Bar
 
                     if (Level == undefined) {
-                        console.log("v.1")
+                        console.log("v.2")
                         var CheckForFirstTime = localStorage.getItem("Level")
                         if (CheckForFirstTime == null) {
                             document.getElementById('LivesLeft').innerHTML = ("2 lives left");
