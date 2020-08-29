@@ -80,7 +80,6 @@
                         document.getElementById('Level').innerHTML = ("Oh no you lost all your lives! You survived until level " + GetLevel + ".");                        
                         localStorage.removeItem("LivesLeft")
                         localStorage.removeItem("GameLive")
-                        document.getElementById('Level').innerHTML = ("");
                         document.getElementById('AlertSection').innerHTML = ("");
                         document.getElementById('HighestLevelReached').innerHTML = ("");
                         document.getElementById('LivesLeft').innerHTML = ("");
@@ -107,7 +106,6 @@
                 if (x == 32) { // Space Bar
 
                     if (Level == undefined) {
-                        console.log("1")
                         var CheckForFirstTime = localStorage.getItem("Level")
                         if (CheckForFirstTime == null) {
                             document.getElementById('LivesLeft').innerHTML = ("2 lives left");
