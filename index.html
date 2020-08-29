@@ -77,16 +77,16 @@
 
                     if (CheckForFirstDeath == 0) {
                         var GetLevel = localStorage.getItem("Level")
-                        document.getElementById('TimeStarted').innerHTML = ("Oh no you lost all your lives! You survived until level " + GetLevel + ".");                        
+                        document.getElementById('Level').innerHTML = ("Oh no you lost all your lives! You survived until level " + GetLevel + ".");                        
                         localStorage.removeItem("LivesLeft")
-                        localStorage.removeItem("Level")
                         localStorage.removeItem("GameLive")
                         document.getElementById('Level').innerHTML = ("");
                         document.getElementById('AlertSection').innerHTML = ("");
                         document.getElementById('HighestLevelReached').innerHTML = ("");
                         document.getElementById('LivesLeft').innerHTML = ("");
                         var HighestLevel = localStorage.getItem("HighestLevelReached");
-                        
+                        alert(HighestLevel)
+                        alert(GetLevel)
                         if (HighestLevel == null) {
                             var HighestLevel = 0
                             localStorage.setItem("HighestLevelReached", 0);
