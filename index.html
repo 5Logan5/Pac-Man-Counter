@@ -92,10 +92,11 @@
                         }
                         var LevelFinishedOn = localStorage.getItem("Level")
                         var HighestLevelReached = localStorage.getItem("HighestLevelReached")
+                        alert(LevelFinishedOn ">" HighestLevel);
                         if (LevelFinishedOn > HighestLevel) {
                             localStorage.setItem("HighestLevelReached", LevelFinishedOn)
                         }
-                                                                
+                           localStorage.removeItem("Level")                                     
                     }
                     }else{
                         alert("You can't take away lives if there is no game started :(. Press the spacebar to start a game.");
@@ -105,7 +106,7 @@
                 if (x == 32) { // Space Bar
 
                     if (Level == undefined) {
-                        console.log("v.2")
+                        console.log("v.3")
                         var CheckForFirstTime = localStorage.getItem("Level")
                         if (CheckForFirstTime == null) {
                             document.getElementById('LivesLeft').innerHTML = ("2 lives left");
