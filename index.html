@@ -108,6 +108,7 @@
                     if (Level == undefined) {
                         var CheckForFirstTime = localStorage.getItem("Level")
                         if (CheckForFirstTime == null) {
+                            document.getElementById('Level').innerHTML = ("Level: 1");
                             document.getElementById('LivesLeft').innerHTML = ("2 lives left");
                             var Level = 1
                             localStorage.setItem("Level", 1)
